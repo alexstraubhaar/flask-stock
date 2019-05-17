@@ -1,0 +1,1 @@
+from stck import app
