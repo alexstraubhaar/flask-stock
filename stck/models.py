@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
-    albums = db.relationship('Album', backref='artist', lazy='dynamic')
+    albums = db.relationship('Album', backref='albums', lazy='dynamic')
 
     def __repr__(self):
         return '<Artist {}>'.format(self.name)
