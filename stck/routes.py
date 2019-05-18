@@ -1,13 +1,12 @@
-from flask import render_template, flash, redirect, request
-from stck import app
-from stck.forms import LoginForm
+from flask import render_template, flash, redirect, request, url_for
+from stck import app, db
+from stck.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from stck.models import User
 from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
     user = {'username': 'Alex'}
     return render_template('index.html', title='Home')
@@ -33,3 +32,17 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('User created')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
