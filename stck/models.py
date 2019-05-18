@@ -1,25 +1,15 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.hybrid import hybrid_property
-from stck.database import Base
-from . import bcrypt
+from stck import db
+from datetime import datetime
 
-class User(Base):
-    __tablename__='users'
-    id = Column(Integer, primary_key=True)
-    username = Column(String(50), unique=True)
-    pwd = Column(String(128))
-
-    def __init__(self, username=None, pwd=None):
-        self.username = username
-        self.pwd = set_password(pwd)
-
-    @hybrid_property
-    def password(self):
-        return self.pwd
-
-    @password.setter
-    def set_password(self, plaintext):
-        self.pwd = bcrypt.generate_password_hash(plaintext)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return '<User {}>'.format(self.username)
+
+class Artist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True, unique=True)
+    
