@@ -2,29 +2,29 @@
 
 {% block content %}
     <h1>Register</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" class="ui form">
         {{ form.hidden_tag() }}
-        <p>
+        <div class="field">
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
+        </div>
+        <div class="field">
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
+        </div>
+        <div class="field">
             {{ form.password2.label }}<br>
             {{ form.password2(size=32) }}<br>
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
+        </div>
+        <p>{{ form.submit(class='ui button') }}</p>
     </form>
 {% endblock %}

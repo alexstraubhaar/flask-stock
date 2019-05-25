@@ -2,24 +2,24 @@
 
 {% block content %}
     <h1>Sign In</h1>
-    <form action="" method="POST" novalidate>
+    <form action="" method="POST" class="ui form" novalidate>
         {{ form.hidden_tag() }}
-        <p>
+        <div class="field">
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
+        </div>
+        <div class="field">
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        </div>
+        <div class="ui checkbox">{{ form.remember_me() }} {{ form.remember_me.label }}</div>
+        <p>{{ form.submit(class='ui button') }}</p>
         <p><a href="{{ url_for('register') }}">New User</a></p>
     </form>
 {% endblock %}
