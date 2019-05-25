@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='semantic.min.css') }}">
     </head>
 
     <body>
@@ -13,6 +14,7 @@
             {% endif %}
         </div>
         <hr>
+        <br>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -23,6 +25,8 @@
         {% endif %}
         {% endwith %}
 
-        {% block content %}{% endblock %}
+        <div class="ui grid">
+            {% block content %}{% endblock %}
+        </div>
     </body>
 </html>

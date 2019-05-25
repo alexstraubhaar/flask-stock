@@ -51,5 +51,5 @@ def register():
 @login_required
 def artist(name):
     artist = Artist.query.filter_by(name=name).first_or_404()
-    albums = Album.query.filter_by(id=artist.albums).all()
+    albums = Album.query.filter_by(artist_id=artist.id).all()
     return render_template('artist.html', artist=artist, albums=albums)
