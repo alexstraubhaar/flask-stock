@@ -23,6 +23,10 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different username')
 
+class ArtistForm(FlaskForm):
+    name = StringField("Artist's name", validators=[DataRequired()])
+    submit = SubmitField('Create')
+
 class SearchForm(FlaskForm):
     search = StringField('search', [DataRequired()])
     submit = SubmitField('Search')

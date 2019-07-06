@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="ui text container">
+        <h1>Artists</h1>
+        {% for artist in artists %}
+            <p><a href="{{ url_for('artist', name=artist.name) }}">{{ artist.name }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}

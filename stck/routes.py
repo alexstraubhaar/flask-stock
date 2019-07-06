@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, request, url_for
 from stck import app, db
-from stck.forms import LoginForm, RegistrationForm
+from stck.forms import LoginForm, RegistrationForm, ArtistForm
 from flask_login import current_user, login_user, logout_user, login_required
 from stck.models import User, Artist, Album
 from werkzeug.urls import url_parse
@@ -46,12 +46,31 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/artists')
+@login_required
+def artists():
+    artists = Artist.query.all()
+    return render_template('artists.html', artists=artists)
+
 @app.route('/artist/<name>')
 @login_required
 def artist(name):
     artist = Artist.query.filter_by(name=name).first_or_404()
     albums = Album.query.filter_by(artist_id=artist.id).all()
     return render_template('artist.html', artist=artist, albums=albums)
+
+@app.route('/artist/create', methods=['GET', 'POST'])
+@login_required
+def new_artist():
+    form = ArtistForm()
+    if form.validate_on_submit():
+        artist = Artist(name=form.name.data)
+        db.session.add(artist)
+        db.session.commit()
+        flash('Artist created')
+    return render_template('new_artist.html', form=form)
+
+
 
 @app.route('/stock')
 @login_required

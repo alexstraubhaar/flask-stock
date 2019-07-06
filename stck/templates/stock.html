@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="ui text container">
-    <h1>WESH LE STOCK</h1>
-    {% for album in albums %}
-        <p>{{ album.title }}</p>
-    {% endfor %}
-</div>
+    <div class="ui text container">
+        <h1>WESH LE STOCK</h1>
+        {% for album in albums %}
+            <p>{{ album.title }}</p>
+        {% endfor %}
+    </div>
 {% endblock %}
