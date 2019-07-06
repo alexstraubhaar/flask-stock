@@ -23,7 +23,7 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different username')
 
-class SearchForm(Form):
+class SearchForm(FlaskForm):
     search = StringField('search', [DataRequired()])
     submit = SubmitField('Search')
     

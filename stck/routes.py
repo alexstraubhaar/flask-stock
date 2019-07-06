@@ -8,7 +8,6 @@ from werkzeug.urls import url_parse
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Alex'}
     return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -57,4 +56,5 @@ def artist(name):
 @app.route('/stock')
 @login_required
 def stock():
-    return render_template('stock.html')
+    albums = Album.query.all()
+    return render_template('stock.html', albums=albums)

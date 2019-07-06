@@ -35,6 +35,9 @@ class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
+    cds = db.Column(db.Integer)
+    lps = db.Column(db.Integer)
+    tapes = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Album {}>'.format(self.title)
