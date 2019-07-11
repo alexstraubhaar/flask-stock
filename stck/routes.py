@@ -70,12 +70,20 @@ def album(title):
     album = Album.query.filter_by(title=title).first_or_404()
     return render_template('album.html', album=album)
 
-@app.route('/album/create')
+@app.route('/album/create', methods=['GET', 'POST'])
 @login_required
 def new_album():
     form = AlbumForm()
     if form.validate_on_submit():
-        flash('nice')
+        title = form.title.data
+        artist_id = form.artist_name.id
+        lps = form.lps.data
+        cds = form.cds.data
+        tapes = form.tapes.data
+        album = Album(title=title, artist_id=artist_id, lps=lps, cds=cds, tapes=tapes)
+        db.session.add(album)
+        db.session.commit()
+        flash('Album created')
     return render_template('new_album.html', form=form)
 
 @app.route('/stock')

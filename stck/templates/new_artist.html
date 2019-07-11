@@ -6,9 +6,12 @@
         {{ form.hidden_tag() }}
         <div class="field">
             {{ form.name.label }}<br>
-            {{ form.name(size=32) }}<br>
+            {{ form.name(size=32) }}
+        </div>
+        <div class="ui error message">
+            <div class="header">Error</div>
             {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+                <p>[{{ error }}]</p>
             {% endfor %}
         </div>
         <p>{{ form.submit(class='ui button') }}</p>

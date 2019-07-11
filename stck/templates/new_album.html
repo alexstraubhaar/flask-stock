@@ -4,7 +4,7 @@
     <h1>New Album</h1>
     <form action="" method="POST" class="ui form">
         {{ form.hidden_tag() }}
-        <div class="three fields">
+        <div class="four fields">
             <div class="field">
                 {{ form.title.label }}<br>
                 {{ form.title(size=32) }}<br>
@@ -13,15 +13,29 @@
                 {{ form.artist_name.label }}<br>
                 {{ form.artist_name(class="ui search dropdown") }}<br>
             </div>
-            <div class="ui error message">
-                <div class="header">Error</div>
-                {% for error in form.title.errors %}
-                    <p>[{{ error }}]</p>
-                {% endfor %}
+            <div class="fields">
+                <div class="field">
+                    {{ form.lps.label }}
+                    {{ form.lps }}
+                </div>
+                <div class="field">
+                    {{ form.cds.label }}
+                    {{ form.cds }}
+                </div>
+                <div class="field">
+                    {{ form.tapes.label }}
+                    {{ form.tapes }}
+                </div>
             </div>
             <div class="field">
                 <p>{{ form.submit(class='ui button') }}</p>
             </div>
+        </div>
+        <div class="ui error message">
+                <div class="header">Error</div>
+                {% for error in form.title.errors %}
+                    <p>[{{ error }}]</p>
+                {% endfor %}
         </div>
     </form>
 

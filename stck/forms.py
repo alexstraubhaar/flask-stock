@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 from stck.models import User, Artist, Album
 
@@ -29,9 +29,11 @@ class ArtistForm(FlaskForm):
 
 class AlbumForm(FlaskForm):
     title = StringField("Album's title", validators=[DataRequired()])
-
     # Selectfield with avalaible artists' names
     artist_name = SelectField(u'Artist', coerce=int, validators=[DataRequired()], choices=[(artist.id, artist.name) for artist in Artist.query.order_by('name')])
+    lps = IntegerField("LPs", validators=[DataRequired()], default=0)
+    cds = IntegerField("CDs", validators=[DataRequired()], default=0)
+    tapes = IntegerField("Tapes", validators=[DataRequired()], default=0)
 
     submit = SubmitField('Create')
 

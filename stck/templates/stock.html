@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="ui text container">
-        <h1>STOCK</h1>
-        <div class="ui vertical animated button" onClick="location.href='{{ url_for('new_artist') }}'">
-            <div class="visible content">Artist</div>
+    <h1>STOCK</h1>
+    <div class="ui vertical animated button" onClick="location.href='{{ url_for('new_artist') }}'">
+        <div class="visible content">Artist</div>
+        <div class="hidden content">+</div>
+    </div>
+    <div class="ui vertical animated button" onClick="location.href='{{ url_for('new_album') }}'">
+            <div class="visible content">Album</div>
             <div class="hidden content">+</div>
         </div>
-        <div class="ui vertical animated button" onClick="location.href='{{ url_for('new_album') }}'">
-                <div class="visible content">Album</div>
-                <div class="hidden content">+</div>
-            </div>
-        </div>
-        <br>
+    </div>
+    <br>
+    <div class="ui text container">
         {% for album in albums %}
             <p>{{ album.title }}</p>
         {% endfor %}
