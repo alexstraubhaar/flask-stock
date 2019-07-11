@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>New Album</h1>
+    <form action="" method="POST" class="ui form">
+        {{ form.hidden_tag() }}
+        <div class="three fields">
+            <div class="field">
+                {{ form.title.label }}<br>
+                {{ form.title(size=32) }}<br>
+            </div>
+            <div class="field">
+                {{ form.artist_name.label }}<br>
+                <div class="ui selection dropdown">
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        {{ form.artist_name }}<br>
+                    </div>
+                </div>
+            </div>
+            <div class="ui error message">
+                <div class="header">Error</div>
+                {% for error in form.title.errors %}
+                    <p>[{{ error }}]</p>
+                {% endfor %}
+            </div>
+            <div class="field">
+                <p>{{ form.submit(class='ui button') }}</p>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $('select.dropdown')
+            .dropdown()
+        ;
+    </script>
+{% endblock %}
