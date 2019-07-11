@@ -11,12 +11,7 @@
             </div>
             <div class="field">
                 {{ form.artist_name.label }}<br>
-                <div class="ui selection dropdown">
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        {{ form.artist_name }}<br>
-                    </div>
-                </div>
+                {{ form.artist_name(class="ui search dropdown") }}<br>
             </div>
             <div class="ui error message">
                 <div class="header">Error</div>
