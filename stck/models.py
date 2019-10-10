@@ -33,11 +33,11 @@ class Artist(db.Model):
 
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), index=True)
+    title = db.Column(db.String(64))
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.id'))
-    cds = db.Column(db.Integer)
-    lps = db.Column(db.Integer)
-    tapes = db.Column(db.Integer)
+    cds = db.Column(db.Integer, nullable=True)
+    lps = db.Column(db.Integer, nullable=True)
+    tapes = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         return '<Album {}>'.format(self.title)

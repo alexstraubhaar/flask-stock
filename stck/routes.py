@@ -76,7 +76,7 @@ def new_album():
     form = AlbumForm()
     if form.validate_on_submit():
         title = form.title.data
-        artist_id = form.artist_name.id
+        artist_id = form.artist_name.data
         lps = form.lps.data
         cds = form.cds.data
         tapes = form.tapes.data
